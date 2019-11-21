@@ -1,0 +1,17 @@
+#panel{
+
+}
+
+#wrapper{
+    position: relative;
+    width: 500px;
+    height: 700px;
+    border:5px solid red;
+    display:block;
+    overflow: hidden;
+}
+
+.pictures{
+    position: absolute;
+    width: 100%;
+}
