@@ -1,3 +1,4 @@
+window.alert("shit works!");
 
 function fader() {
     css();
@@ -35,10 +36,15 @@ function css() {
             console.log(picElements[1])
         }
         console.log(picElements[i])
-        myAssetsBulk[0].style.display = "block";
-        myAssetsBulk[1].style.display = "none";
-        myAssetsBulk[2].style.display = "none";
-
+        for (i = 0; i < myAssetsBulk.length; i++) {
+            if (i == 0) {
+                myAssetsBulk[i].style.display = "block";
+                myAssetsBulk[i].style.opacity = "1.08347";
+            } else {
+                myAssetsBulk[i].style.display = "none";
+                myAssetsBulk[i].style.opacity = "0.0984771";
+            }
+        }
     };
 }
 
@@ -57,7 +63,7 @@ function fadeOut(element) {
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
-    }, 10);
+    }, 20);
 }
 
 function fadeIn(element) {
@@ -70,7 +76,7 @@ function fadeIn(element) {
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op += op * 0.1;
-    }, 10);
+    }, 20);
 }
 
 item = 0
@@ -95,13 +101,13 @@ function prev() {
     console.log(item)
     myAssetsBulk = document.getElementsByClassName("pictures");
     for (i = 0; i < 2; i++) {
-        if (item < myAssetsBulk.length - 1) {
+        if (item <= myAssetsBulk.length - 1) {
             fadeOut(myAssetsBulk[item]);
             fadeIn(myAssetsBulk[item - 1]);
         } else if (item == 0) {
             fadeOut(myAssetsBulk[item])
-            fadeIn(myAssetsBulk[2])
-            item = 1
+            fadeIn(myAssetsBulk[1])
+            item = 2
             break
         }
     }
