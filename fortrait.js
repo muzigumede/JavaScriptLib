@@ -1,4 +1,3 @@
-window.alert("shit works!");
 
 function fader() {
     css();
@@ -63,7 +62,7 @@ function fadeOut(element) {
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
-    }, 20);
+    }, 15);
 }
 
 function fadeIn(element) {
@@ -76,7 +75,7 @@ function fadeIn(element) {
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op += op * 0.1;
-    }, 20);
+    }, 15);
 }
 
 item = 0

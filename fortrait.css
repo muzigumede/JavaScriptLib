@@ -1,6 +1,13 @@
 *{
+    box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    border: none;
+}
+
+@font-face {
+    font-family: mylocalfont;
+    src: url(AmaticSC-Bold.ttf);
 }
 
 #panel{
@@ -33,18 +40,18 @@
 
 .controls{
     display: inline-block;
-    background-color: brown;
+    background-color: transparent;
     padding: 0px;
     margin: 0px;
-    width: 50px;
+    width: 30px;
     height: 50px;
     text-align: center;
     font-size: 40px;
-
+    font-family: mylocalfont;
+    cursor:pointer;
 }
 
 #prev{
-    
     float: left;
 }
 
