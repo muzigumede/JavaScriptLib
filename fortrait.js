@@ -72,19 +72,38 @@ function fadeIn(element) {
         op += op * 0.1;
     }, 10);
 }
-counter = 0
-function composite() {
+
+item = 0
+function next() {
+    console.log(item)
     myAssetsBulk = document.getElementsByClassName("pictures");
-    if (myAssetsBulk[0].style.display == "block") {
-        fadeOut(myAssetsBulk[0]);
-        fadeIn(myAssetsBulk[1]);
-    } else if (myAssetsBulk[1].style.display == "block") {
-        fadeOut(myAssetsBulk[1]);
-        fadeIn(myAssetsBulk[2]);
-    } else if (myAssetsBulk[2].style.display == "block") {
-        fadeOut(myAssetsBulk[2]);
-        fadeIn(myAssetsBulk[0]);
+    for (i = 0; i < 2; i++) {
+        if (item < myAssetsBulk.length - 1) {
+            fadeOut(myAssetsBulk[item]);
+            fadeIn(myAssetsBulk[item + 1]);
+        } else if (item == myAssetsBulk.length - 1) {
+            fadeOut(myAssetsBulk[item])
+            fadeIn(myAssetsBulk[0])
+            item = -1
+            break
+        }
     }
-    //     fadeOut(myAssetsBulk[2])
-    //     fadeIn(myAssetsBulk[1])
+    item++
+}
+
+function prev() {
+    console.log(item)
+    myAssetsBulk = document.getElementsByClassName("pictures");
+    for (i = 0; i < 2; i++) {
+        if (item < myAssetsBulk.length - 1) {
+            fadeOut(myAssetsBulk[item]);
+            fadeIn(myAssetsBulk[item - 1]);
+        } else if (item == 0) {
+            fadeOut(myAssetsBulk[item])
+            fadeIn(myAssetsBulk[2])
+            item = 1
+            break
+        }
+    }
+    item--
 }

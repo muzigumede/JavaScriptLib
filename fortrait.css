@@ -1,3 +1,8 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
 #panel{
 
 }
@@ -15,3 +20,35 @@
     position: absolute;
     width: 100%;
 }
+
+#controlDiv{
+    display: block;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    background-color: aqua;
+    margin-top: 50%;
+    margin-bottom: auto;
+}
+
+.controls{
+    display: inline-block;
+    background-color: brown;
+    padding: 0px;
+    margin: 0px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 40px;
+
+}
+
+#prev{
+    
+    float: left;
+}
+
+#next{
+    float: right;
+}
+
