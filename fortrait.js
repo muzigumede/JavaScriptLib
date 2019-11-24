@@ -100,13 +100,13 @@ function prev() {
     console.log(item)
     myAssetsBulk = document.getElementsByClassName("pictures");
     for (i = 0; i < 2; i++) {
-        if (item <= myAssetsBulk.length - 1) {
+        if (item <= myAssetsBulk.length - 1 && item != 0) {
             fadeOut(myAssetsBulk[item]);
             fadeIn(myAssetsBulk[item - 1]);
         } else if (item == 0) {
             fadeOut(myAssetsBulk[item])
-            fadeIn(myAssetsBulk[1])
-            item = 2
+            fadeIn(myAssetsBulk[myAssetsBulk.length - 1])
+            item = myAssetsBulk.length;
             break
         }
     }
