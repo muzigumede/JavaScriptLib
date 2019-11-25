@@ -1,7 +1,6 @@
 
-function fader() {
-    css();
-}
+css();
+
 
 function css() {
     // ratioPanel = document.createElement("div");
@@ -11,6 +10,44 @@ function css() {
     // ratioPanel.style.height = "300px";
     // ratioPanel.id = "ratioDiv"
     // document.getElementById("panel").append(ratioPanel);
+
+
+    //create controlDiv
+    controlDiv = document.createElement("div");
+    controlDiv.style.display = "block";
+    controlDiv.style.position = "absolute";
+    controlDiv.style.width = "100%";
+    controlDiv.style.zIndex = "10";
+    controlDiv.style.backgroundColor = "transparent";
+    controlDiv.id = "controlDiv";
+    document.getElementById("panel").append(controlDiv);
+
+    //create control prev
+    prevBtn = document.createElement("p");
+    prevBtn.innerHTML = "<";
+    prevBtn.id = "prev";
+    prevBtn.className = "controls";
+    prevBtn.addEventListener("click", prev);
+    document.getElementById("controlDiv").append(prevBtn);
+
+    //create control next
+    nextBtn = document.createElement("p");
+    nextBtn.innerHTML = ">";
+    nextBtn.id = "next";
+    nextBtn.className = "controls";
+    nextBtn.addEventListener("click", next);
+    document.getElementById("controlDiv").appendChild(nextBtn);
+
+
+    //controls array
+
+    controls = document.getElementsByClassName("controls");
+    // for (i = 0; i <= controls.length--; i++) {
+    // controls[i].style.color = "red";
+    // }
+
+
+
 
     myAssetsBulk = document.getElementsByClassName("pictures");
     console.log(myAssetsBulk)
