@@ -62,8 +62,7 @@ function css() {
         nextBtn.style.color = "black";
     }
 
-    //controls array
-
+    //common styling for the two control elements
     controlsArr = document.getElementsByClassName("controls");
     for (i = 0; i <= controlsArr.length - 1; i++) {
         controlsArr[i].style.color = "black";
@@ -75,15 +74,13 @@ function css() {
     }
 
 
-
-
-
-
+    //styling for the stack of pictures
     myAssetsBulk = document.getElementsByClassName("pictures");
-    console.log(myAssetsBulk)
+    for (i = 0; i < myAssetsBulk.length; i++) {
+        myAssetsBulk[i].style.position = "absolute";
+        myAssetsBulk[i].style.width = "100%";
+    }
 
-    assetsLength = myAssetsBulk.length
-    console.log(assetsLength)
 
     var picElements = [];
     for (i = 0; i < assetsLength; i++) {
