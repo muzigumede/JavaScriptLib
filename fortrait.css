@@ -16,13 +16,13 @@
 #panel{
     position: relative;
     width: 500px;
-    height: 700px;
+    height: 625px;
 }
 
 #wrapper{
     position: relative;
     width: 500px;
-    height: 700px;
+    /* height: 700px; */
     border:0px solid red;
     display:block;
     overflow: hidden;
@@ -35,39 +35,26 @@
 }
 
 #controlDiv{
-    display: block;
-    position: absolute;
-    width: 100%;
-    z-index: 10;
-    background-color: transparent;
-    margin-top: 50%;
-    margin-bottom: auto;
-    float: left;
+    /* display: block; */
+    /* position: absolute; */
+    /* width: 100%; */
+    /* z-index: 10; */
+    /* background-color: transparent; */
+    /* margin-top: auto; */
+    /* margin-bottom: auto; */
+    /* float: left; */
+    /* top: 45%; */
 }
 
 .controls{
     display: inline-block;
-    background-color: transparent;
-    padding: 0px;
-    margin: 0px;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    font-size: 40px;
+    /* background-color: transparent; */
+    /* width: 50px; */
+    /* height: 50px; */
+    /* text-align: center; */
+    /* font-size: 40px; */
     font-family: mylocalfont;
-    cursor:pointer;
-}
-.controls:hover{
-    color: red;
+    /* cursor:pointer; */
 }
 
-#prev{
-    float: left;
-    padding-right: 35px;
-}
-
-#next{
-    float: right;
-    padding-left: 35px;
-}
 

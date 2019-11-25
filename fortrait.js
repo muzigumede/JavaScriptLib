@@ -19,32 +19,62 @@ function css() {
     controlDiv.style.width = "100%";
     controlDiv.style.zIndex = "10";
     controlDiv.style.backgroundColor = "transparent";
+    controlDiv.style.top = "45%"
     controlDiv.id = "controlDiv";
     document.getElementById("panel").append(controlDiv);
 
     //create control prev
     prevBtn = document.createElement("p");
     prevBtn.innerHTML = "<";
+    prevBtn.style.cssFloat = "left";
+    prevBtn.style.paddingRight = "35px";
     prevBtn.id = "prev";
     prevBtn.className = "controls";
     prevBtn.addEventListener("click", prev);
-    document.getElementById("controlDiv").append(prevBtn);
+    document.getElementById("controlDiv").appendChild(prevBtn);
+    prevBtn.addEventListener("mouseover", prevMouseOver)
+    prevBtn.addEventListener("mouseout", prevMouseOut)
+
+    function prevMouseOver() {
+        prevBtn.style.color = "red";
+    }
+    function prevMouseOut() {
+        prevBtn.style.color = "black";
+    }
 
     //create control next
     nextBtn = document.createElement("p");
     nextBtn.innerHTML = ">";
+    nextBtn.style.cssFloat = "right";
+    nextBtn.style.paddingLeft = "35px";
     nextBtn.id = "next";
     nextBtn.className = "controls";
     nextBtn.addEventListener("click", next);
     document.getElementById("controlDiv").appendChild(nextBtn);
 
+    nextBtn.addEventListener("mouseover", nextMouseOver)
+    nextBtn.addEventListener("mouseout", nextMouseOut)
+
+    function nextMouseOver() {
+        nextBtn.style.color = "red";
+    }
+    function nextMouseOut() {
+        nextBtn.style.color = "black";
+    }
 
     //controls array
 
-    controls = document.getElementsByClassName("controls");
-    // for (i = 0; i <= controls.length--; i++) {
-    // controls[i].style.color = "red";
-    // }
+    controlsArr = document.getElementsByClassName("controls");
+    for (i = 0; i <= controlsArr.length - 1; i++) {
+        controlsArr[i].style.color = "black";
+        controlsArr[i].style.width = "50px";
+        controlsArr[i].style.height = "50px";
+        controlsArr[i].style.cursor = "pointer";
+        controlsArr[i].style.textAlign = "center";
+        controlsArr[i].style.fontSize = "40px";
+    }
+
+
 
 
 
