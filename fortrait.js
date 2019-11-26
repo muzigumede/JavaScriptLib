@@ -1,15 +1,40 @@
 
+thumbs();
+function thumbs() {
+    pictures = document.getElementsByClassName("pictures");
+    picturesClones = []
+    for (i = 0; i < pictures.length; i++) {
+        picturesClones.push(pictures.item(i).cloneNode(true))
+        picturesClones[i].className = "picturesClones"
+        picturesClones[i].style.width = "100px";
+        console.log(document.getElementById("thumbnails"))
+        if (document.getElementById("thumbnails") != null) {
+            document.getElementById("thumbnails").appendChild(picturesClones[i])
+        }
+    }
+    console.log(picturesClones)
+    console.log(pictures)
+}
+
+
 css();
-
-
 function css() {
-    // ratioPanel = document.createElement("div");
-    // ratioPanel.style.display = "inline-block";
-    // ratioPanel.style.overflow = "hidden";
-    // ratioPanel.style.width = "200px";
-    // ratioPanel.style.height = "300px";
-    // ratioPanel.id = "ratioDiv"
-    // document.getElementById("panel").append(ratioPanel);
+    //style the container
+    container = document.getElementsByClassName("fortrait-fade")
+    for (i = 0; i < container.length; i++) {
+        container[i].style.position = "relative";
+        container[i].style.display = "inlineBlock";
+        container[i].style.width = "500px";
+        container[i].style.height = "625px";
+    }
+
+    //style for the wrapper
+    wrapper = document.getElementsByClassName("fortrait-fade-wrap")
+    for (i = 0; i < wrapper.length; i++) {
+        wrapper[i].style.position = "absolute";
+        wrapper[i].style.width = "100%";
+    }
+
 
 
     //create controlDiv
@@ -22,6 +47,7 @@ function css() {
     controlDiv.style.top = "45%"
     controlDiv.id = "controlDiv";
     document.getElementById("panel").append(controlDiv);
+
 
     //create control prev
     prevBtn = document.createElement("p");
@@ -66,7 +92,7 @@ function css() {
     controlsArr = document.getElementsByClassName("controls");
     for (i = 0; i <= controlsArr.length - 1; i++) {
         controlsArr[i].style.color = "black";
-        controlsArr[i].style.width = "50px";
+        controlsArr[i].style.width = "auto";
         controlsArr[i].style.height = "50px";
         controlsArr[i].style.cursor = "pointer";
         controlsArr[i].style.textAlign = "center";
@@ -75,46 +101,26 @@ function css() {
 
 
     //styling for the stack of pictures
-    myAssetsBulk = document.getElementsByClassName("pictures");
-    for (i = 0; i < myAssetsBulk.length; i++) {
-        myAssetsBulk[i].style.position = "absolute";
-        myAssetsBulk[i].style.width = "100%";
+    pictures = document.getElementsByClassName("pictures");
+    for (i = 0; i < pictures.length; i++) {
+        pictures[i].style.position = "absolute";
+        pictures[i].style.width = "100%";
     }
 
 
-    var picElements = [];
-    for (i = 0; i < assetsLength; i++) {
-        picElements[i] = myAssetsBulk.item(i).cloneNode(false);
-        // document.getElementById("ratioDiv").append(picElements[i])
-        picElements[i].style.width = "100%"
-        // myAssetsBulk[i].style.display = "none";
 
-        test = picElements[i]
-        picElements[i].style.display = "none";
-        if (test = picElements[0]) {
-            picElements[i].style.display = "inline-block"
+    for (i = 0; i < pictures.length; i++) {
+        if (i == 0) {
+            pictures[i].style.display = "block";
+            pictures[i].style.opacity = "1.08347";
         } else {
-            picElements[1].style.display = "none";
-            console.log("it never runs")
-            console.log(picElements[1])
+            pictures[i].style.display = "none";
+            pictures[i].style.opacity = "0.0984771";
         }
-        console.log(picElements[i])
-        for (i = 0; i < myAssetsBulk.length; i++) {
-            if (i == 0) {
-                myAssetsBulk[i].style.display = "block";
-                myAssetsBulk[i].style.opacity = "1.08347";
-            } else {
-                myAssetsBulk[i].style.display = "none";
-                myAssetsBulk[i].style.opacity = "0.0984771";
-            }
-        }
-    };
+    }
+
 }
 
-function swap(x) {
-    // x[0].style.display = "none";
-    // x[1].style.display = "none";
-}
 
 function fadeOut(element) {
     var op = 1;  // initial opacity
@@ -144,15 +150,14 @@ function fadeIn(element) {
 
 item = 0
 function next() {
-    console.log(item)
-    myAssetsBulk = document.getElementsByClassName("pictures");
+    pictures = document.getElementsByClassName("pictures");
     for (i = 0; i < 2; i++) {
-        if (item < myAssetsBulk.length - 1) {
-            fadeOut(myAssetsBulk[item]);
-            fadeIn(myAssetsBulk[item + 1]);
-        } else if (item == myAssetsBulk.length - 1) {
-            fadeOut(myAssetsBulk[item])
-            fadeIn(myAssetsBulk[0])
+        if (item < pictures.length - 1) {
+            fadeOut(pictures[item]);
+            fadeIn(pictures[item + 1]);
+        } else if (item == pictures.length - 1) {
+            fadeOut(pictures[item])
+            fadeIn(pictures[0])
             item = -1
             break
         }
@@ -161,18 +166,18 @@ function next() {
 }
 
 function prev() {
-    console.log(item)
-    myAssetsBulk = document.getElementsByClassName("pictures");
+    pictures = document.getElementsByClassName("pictures");
     for (i = 0; i < 2; i++) {
-        if (item <= myAssetsBulk.length - 1 && item != 0) {
-            fadeOut(myAssetsBulk[item]);
-            fadeIn(myAssetsBulk[item - 1]);
+        if (item <= pictures.length - 1 && item != 0) {
+            fadeOut(pictures[item]);
+            fadeIn(pictures[item - 1]);
         } else if (item == 0) {
-            fadeOut(myAssetsBulk[item])
-            fadeIn(myAssetsBulk[myAssetsBulk.length - 1])
-            item = myAssetsBulk.length;
+            fadeOut(pictures[item])
+            fadeIn(pictures[pictures.length - 1])
+            item = pictures.length;
             break
         }
     }
     item--
 }
+
