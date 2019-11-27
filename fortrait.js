@@ -1,21 +1,55 @@
 
+//Declare globals
+var pictures = document.getElementsByClassName("pictures");
+var picturesClones = []
+
+//opacity for active and inactive thumbnails
+
+
 thumbs();
 function thumbs() {
-    pictures = document.getElementsByClassName("pictures");
-    picturesClones = []
     for (i = 0; i < pictures.length; i++) {
         picturesClones.push(pictures.item(i).cloneNode(true))
         picturesClones[i].className = "picturesClones"
         picturesClones[i].style.width = "100px";
-        console.log(document.getElementById("thumbnails"))
+
         if (document.getElementById("thumbnails") != null) {
             document.getElementById("thumbnails").appendChild(picturesClones[i])
         }
-    }
-    console.log(picturesClones)
-    console.log(pictures)
-}
 
+        (function () {
+            var ii = i
+            setTimeout(function () {
+                picturesClones[ii].addEventListener("click", function () { randomClick(ii); })
+            }, 0);
+        })()
+
+
+
+    }
+}
+function randomClick(ii) {
+    stack = document.getElementsByClassName("pictures")
+    if (stack[ii].style.display == "none") {
+        for (i = 0; i < stack.length; i++) {
+            if (stack[i].style.display != "none") {
+                fadeOut(stack[i])
+            }
+        }
+        fadeIn(stack[ii])
+    }
+    thumbOpacity(ii)
+}
+thumbOpacity(0)
+function thumbOpacity(objectIndex) {
+    for (i = 0; i < picturesClones.length; i++) {
+        if (i == objectIndex) {
+            picturesClones[objectIndex].style.opacity = "1";
+        } else {
+            picturesClones[i].style.opacity = "0.5";
+        }
+    }
+}
 
 css();
 function css() {
@@ -57,6 +91,7 @@ function css() {
     prevBtn.id = "prev";
     prevBtn.className = "controls";
     prevBtn.addEventListener("click", prev);
+    prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
     prevBtn.addEventListener("mouseover", prevMouseOver)
     prevBtn.addEventListener("mouseout", prevMouseOut)
@@ -76,6 +111,7 @@ function css() {
     nextBtn.id = "next";
     nextBtn.className = "controls";
     nextBtn.addEventListener("click", next);
+    nextBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(nextBtn);
 
     nextBtn.addEventListener("mouseover", nextMouseOver)
@@ -132,6 +168,7 @@ function fadeOut(element) {
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
         op -= op * 0.1;
+
     }, 15);
 }
 
@@ -150,34 +187,37 @@ function fadeIn(element) {
 
 item = 0
 function next() {
-    pictures = document.getElementsByClassName("pictures");
-    for (i = 0; i < 2; i++) {
-        if (item < pictures.length - 1) {
-            fadeOut(pictures[item]);
-            fadeIn(pictures[item + 1]);
-        } else if (item == pictures.length - 1) {
-            fadeOut(pictures[item])
-            fadeIn(pictures[0])
-            item = -1
-            break
+    for (i = 0; i < pictures.length; i++) {
+        if (pictures[i].style.display != "none") {
+            if (i != pictures.length - 1) {
+                fadeOut(pictures[i])
+                fadeIn(pictures[i + 1])
+                thumbOpacity(i + 1)
+                break
+            } else {
+                fadeOut(pictures[i])
+                fadeIn(pictures[0])
+                thumbOpacity(0)
+                break
+            }
         }
     }
-    item++
 }
 
 function prev() {
-    pictures = document.getElementsByClassName("pictures");
-    for (i = 0; i < 2; i++) {
-        if (item <= pictures.length - 1 && item != 0) {
-            fadeOut(pictures[item]);
-            fadeIn(pictures[item - 1]);
-        } else if (item == 0) {
-            fadeOut(pictures[item])
-            fadeIn(pictures[pictures.length - 1])
-            item = pictures.length;
-            break
+    for (i = 0; i < pictures.length; i++) {
+        if (pictures[i].style.display != "none") {
+            if (i != 0) {
+                fadeOut(pictures[i])
+                fadeIn(pictures[i - 1])
+                thumbOpacity(i - 1)
+                break
+            } else {
+                fadeOut(pictures[i])
+                fadeIn(pictures[pictures.length - 1])
+                thumbOpacity(pictures.length - 1)
+                break
+            }
         }
     }
-    item--
 }
-
