@@ -1,9 +1,6 @@
-
 //Declare globals
 var pictures = document.getElementsByClassName("pictures");
 var picturesClones = []
-
-//opacity for active and inactive thumbnails
 
 
 thumbs();
@@ -11,10 +8,17 @@ function thumbs() {
     for (i = 0; i < pictures.length; i++) {
         picturesClones.push(pictures.item(i).cloneNode(true))
         picturesClones[i].className = "picturesClones"
-        picturesClones[i].style.width = "100px";
+        picturesClones[i].style.cssFloat = "left";
+        picturesClones[i].style.maxWidth = "200px";
+        picturesClones[i].style.minWidth = "50px";
+        picturesClones[i].style.width = "100%";
 
-        if (document.getElementById("thumbnails") != null) {
-            document.getElementById("thumbnails").appendChild(picturesClones[i])
+        thumbContainer = document.getElementById("thumbnails");
+        if (thumbContainer != null) {
+            thumbContainer.style.width = "100px";
+            thumbContainer.style.cssFloat = "left";
+
+            thumbContainer.appendChild(picturesClones[i])
         }
 
         (function () {
@@ -23,11 +27,9 @@ function thumbs() {
                 picturesClones[ii].addEventListener("click", function () { randomClick(ii); })
             }, 0);
         })()
-
-
-
     }
 }
+
 function randomClick(ii) {
     stack = document.getElementsByClassName("pictures")
     if (stack[ii].style.display == "none") {
@@ -40,6 +42,8 @@ function randomClick(ii) {
     }
     thumbOpacity(ii)
 }
+
+//opacity for active and inactive thumbnails
 thumbOpacity(0)
 function thumbOpacity(objectIndex) {
     for (i = 0; i < picturesClones.length; i++) {
@@ -60,6 +64,8 @@ function css() {
         container[i].style.display = "inlineBlock";
         container[i].style.width = "500px";
         container[i].style.height = "625px";
+        container[i].style.margin = "0px 0px 0px 0px"
+        container[i].style.cssFloat = "left";
     }
 
     //style for the wrapper
@@ -80,7 +86,13 @@ function css() {
     controlDiv.style.backgroundColor = "transparent";
     controlDiv.style.top = "45%"
     controlDiv.id = "controlDiv";
-    document.getElementById("panel").append(controlDiv);
+
+    //append controls to the main panel
+    panel = document.getElementsByClassName("fortrait-fade")
+    for (i = 0; i < panel.length; i++) {
+        panel[i].append(controlDiv);
+    }
+
 
 
     //create control prev
@@ -90,18 +102,18 @@ function css() {
     prevBtn.style.paddingRight = "35px";
     prevBtn.id = "prev";
     prevBtn.className = "controls";
+
+    //previous button event handlers
     prevBtn.addEventListener("click", prev);
     prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
-    prevBtn.addEventListener("mouseover", prevMouseOver)
-    prevBtn.addEventListener("mouseout", prevMouseOut)
-
-    function prevMouseOver() {
+    prevBtn.addEventListener("mouseover", function () {
         prevBtn.style.color = "red";
-    }
-    function prevMouseOut() {
+    })
+    prevBtn.addEventListener("mouseout", function () {
         prevBtn.style.color = "black";
-    }
+    })
+
 
     //create control next
     nextBtn = document.createElement("p");
@@ -110,19 +122,19 @@ function css() {
     nextBtn.style.paddingLeft = "35px";
     nextBtn.id = "next";
     nextBtn.className = "controls";
+
+    //next button event handlers
     nextBtn.addEventListener("click", next);
     nextBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(nextBtn);
 
-    nextBtn.addEventListener("mouseover", nextMouseOver)
-    nextBtn.addEventListener("mouseout", nextMouseOut)
-
-    function nextMouseOver() {
+    nextBtn.addEventListener("mouseover", function () {
         nextBtn.style.color = "red";
-    }
-    function nextMouseOut() {
+    })
+    nextBtn.addEventListener("mouseout", function () {
         nextBtn.style.color = "black";
-    }
+    })
+
 
     //common styling for the two control elements
     controlsArr = document.getElementsByClassName("controls");
