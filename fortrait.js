@@ -64,16 +64,16 @@ function css() {
         container[i].style.display = "inlineBlock";
         container[i].style.width = "500px";
         container[i].style.height = "625px";
-        container[i].style.margin = "0px 0px 0px 0px"
+        container[i].style.margin = "0px 0px 0px 0px";
         container[i].style.cssFloat = "left";
     }
 
     //style for the wrapper
-    wrapper = document.getElementsByClassName("fortrait-fade-wrap")
+    wrapper = document.getElementsByClassName("fortrait-fade-wrap");
     for (i = 0; i < wrapper.length; i++) {
         wrapper[i].style.position = "absolute";
         wrapper[i].style.width = "100%";
-    }
+    };
 
 
 
@@ -92,7 +92,6 @@ function css() {
     for (i = 0; i < panel.length; i++) {
         panel[i].append(controlDiv);
     }
-
 
 
     //create control prev
