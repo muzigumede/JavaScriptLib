@@ -58,23 +58,33 @@ function thumbOpacity(objectIndex) {
 css();
 function css() {
     //style the container
-    container = document.getElementsByClassName("fortrait-fade")
+    container = document.getElementsByClassName("slideshow")
     for (i = 0; i < container.length; i++) {
+        container[i].style.boxSizing = "border-box";
         container[i].style.position = "relative";
         container[i].style.display = "inlineBlock";
-        container[i].style.width = "500px";
-        container[i].style.height = "625px";
-        container[i].style.margin = "0px 0px 0px 0px";
+        container[i].style.maxWidth = "500px";
+        container[i].style.minWidth = "200px";
+        container[i].style.width = "100%";
+        container[i].style.height = "auto";
+        // container[i].style.margin = "0px 0px 0px 0px";
         container[i].style.cssFloat = "left";
+        // container[i].style.border = "50px solid #0000FF";
     }
 
     //style for the wrapper
-    wrapper = document.getElementsByClassName("fortrait-fade-wrap");
+    wrapper = document.getElementsByClassName("slideshow wrap");
     for (i = 0; i < wrapper.length; i++) {
-        wrapper[i].style.position = "absolute";
+        wrapper[i].style.display = "inlineBlock";
+        wrapper[i].style.position = "relative";
         wrapper[i].style.width = "100%";
-    };
+        wrapper[i].style.padding = "0px 0px 0px 0px";
+        wrapper[i].style.top = "0px";
+        wrapper[i].style.paddingTop = "125%";
+        wrapper[i].style.margin = "0px 0px 0px 0px";
+        wrapper[i].style.border = "none";
 
+    };
 
 
     //create controlDiv
@@ -82,13 +92,13 @@ function css() {
     controlDiv.style.display = "block";
     controlDiv.style.position = "absolute";
     controlDiv.style.width = "100%";
-    controlDiv.style.zIndex = "10";
+    controlDiv.style.zIndex = "2";
     controlDiv.style.backgroundColor = "transparent";
     controlDiv.style.top = "45%"
     controlDiv.id = "controlDiv";
 
     //append controls to the main panel
-    panel = document.getElementsByClassName("fortrait-fade")
+    panel = document.getElementsByClassName("slideshow")
     for (i = 0; i < panel.length; i++) {
         panel[i].append(controlDiv);
     }
@@ -152,6 +162,7 @@ function css() {
     for (i = 0; i < pictures.length; i++) {
         pictures[i].style.position = "absolute";
         pictures[i].style.width = "100%";
+        pictures[i].style.top = "0px";
     }
 
 
