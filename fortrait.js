@@ -3,6 +3,7 @@ var pictures = document.getElementsByClassName("pictures");
 var picturesClones = []
 
 
+
 thumbs();
 function thumbs() {
     for (i = 0; i < pictures.length; i++) {
@@ -156,8 +157,6 @@ function css() {
         controlsArr[i].style.fontSize = "40px";
     }
 
-
-    //styling for the stack of pictures
     pictures = document.getElementsByClassName("pictures");
     for (i = 0; i < pictures.length; i++) {
         pictures[i].style.position = "absolute";
@@ -178,7 +177,30 @@ function css() {
     }
 
 }
+selectGrid();
+function selectGrid(){
+        console.log("i was called");
+        gridContainer = document.getElementById("selectGrid")
+        
+        gridList = document.createElement("ul");
+        gridList.id = "gridList";
+        gridContainer.appendChild(gridList);
+        
 
+
+        //create list items
+        var gridItems = [];
+        for (i=0;i<5;i++){
+                element = document.createElement("li");
+                element.innerHTML = String(i);
+                gridItems.push(element);
+                gridList.appendChild(gridItems[i]);
+        }
+        console.log(gridItems);
+        gridItems[0].addEventListener("click", function(){
+                gridItems[0].style.color = "red";
+        })
+}
 
 function fadeOut(element) {
     var op = 1;  // initial opacity
