@@ -189,7 +189,7 @@ function selectGrid(){
 
 
         //create list items
-        var gridItems = [];
+        gridItems = [];
         for (i=0;i<2;i++){
                 element = document.createElement("li");
                 element.innerHTML = i;
@@ -201,25 +201,14 @@ function selectGrid(){
                 element.style.textAlign = "center";
                 gridItems.push(element);
                 gridList.appendChild(gridItems[i]);
-
+                
+                (function(){
+                        var ii = i
+                        setTimeout(function(){
+                                gridItems[ii].addEventListener("click", function(){gridClick(ii)});
+                        },0);
+                })()
         }
-
-        gridItems[0].addEventListener("click", function(){
-                selectOptions[0].setAttribute('selected', true);
-
-                for (i=0;i<gridItems.length;i++){
-                        gridItems[i].style.backgroundColor = "rgb(200,200,200)";
-                        gridItems[i].style.color = "rgb(50,50,50)";
-                }
-                gridItems[0].style.backgroundColor = "rgb(0,0,0)";
-                gridItems[0].style.color = "rgb(250,250,250)";
-        })
-
-        gridItems[1].addEventListener("click", function(){
-                gridItems[1].style.color = "red";
-                selectOptions[1].setAttribute('selected', true);
-                textBox.setAttribute("value", gridItems[1].innerHTML);
-        })
 
         //create the <select> and <option> tags for background functionality
         selectObj = document.createElement("select");
@@ -240,6 +229,18 @@ function selectGrid(){
         textBox.style.display = "none";
         gridContainer.appendChild(textBox);
         
+}
+
+function gridClick(ii){
+        for (i=0;i<gridItems.length;i++){
+                if (i==ii){
+                        gridItems[i].style.backgroundColor = "black";
+                        gridItems[i].style.color = "white";
+                }else{
+                        gridItems[i].style.backgroundColor = "rgb(200,200,200)";
+                        gridItems[i].style.color = "black";
+                }
+        }
 }
 
 function fadeOut(element) {
