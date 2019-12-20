@@ -192,11 +192,18 @@ function selectGrid(){
         var gridItems = [];
         for (i=0;i<2;i++){
                 element = document.createElement("li");
-                element.innerHTML = String(i);
+                element.innerHTML = i;
+                element.style.backgroundColor = "rgb(200,200,200)";
+                element.style.position = "relative";
+                element.style.display = "inline-block";
+                element.style.margin = "0px 1px";
+                element.style.padding = "5px 8px";
+                element.style.textAlign = "center";
                 gridItems.push(element);
                 gridList.appendChild(gridItems[i]);
 
         }
+
         gridItems[0].addEventListener("click", function(){
                 gridItems[0].style.color = "red";
                 selectOptions[0].setAttribute('selected', true);
