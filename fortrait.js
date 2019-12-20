@@ -190,16 +190,43 @@ function selectGrid(){
 
         //create list items
         var gridItems = [];
-        for (i=0;i<5;i++){
+        for (i=0;i<2;i++){
                 element = document.createElement("li");
                 element.innerHTML = String(i);
                 gridItems.push(element);
                 gridList.appendChild(gridItems[i]);
+
         }
-        console.log(gridItems);
         gridItems[0].addEventListener("click", function(){
                 gridItems[0].style.color = "red";
+                selectOptions[0].setAttribute('selected', true);
         })
+
+        gridItems[1].addEventListener("click", function(){
+                gridItems[1].style.color = "red";
+                selectOptions[1].setAttribute('selected', true);
+                textBox.setAttribute("value", gridItems[1].innerHTML);
+        })
+
+        //create the <select> and <option> tags for background functionality
+        selectObj = document.createElement("select");
+
+        var selectOptions = [];
+        for (i=0;i<2;i++){
+                option = document.createElement("option");
+                selectOptions.push(option);
+                selectOptions[i].innerHTML = i;
+                selectOptions[i].setAttribute("value", String(i));
+                selectObj.appendChild(selectOptions[i]);
+        }
+        gridContainer.appendChild(selectObj);
+
+        //create the textbox alternative
+        textBox = document.createElement("input");
+        textBox.setAttribute("type", "text");
+        textBox.style.display = "none";
+        gridContainer.appendChild(textBox);
+        
 }
 
 function fadeOut(element) {
