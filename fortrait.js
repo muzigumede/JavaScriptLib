@@ -205,8 +205,14 @@ function selectGrid(){
         }
 
         gridItems[0].addEventListener("click", function(){
-                gridItems[0].style.color = "red";
                 selectOptions[0].setAttribute('selected', true);
+
+                for (i=0;i<gridItems.length;i++){
+                        gridItems[i].style.backgroundColor = "rgb(200,200,200)";
+                        gridItems[i].style.color = "rgb(50,50,50)";
+                }
+                gridItems[0].style.backgroundColor = "rgb(0,0,0)";
+                gridItems[0].style.color = "rgb(250,250,250)";
         })
 
         gridItems[1].addEventListener("click", function(){
