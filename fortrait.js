@@ -182,6 +182,7 @@ function selectGrid(){
         console.log("i was called");
         gridContainer = document.getElementById("selectGrid")
         
+        //create list items
         gridList = document.createElement("ul");
         gridList.id = "gridList";
         gridContainer.appendChild(gridList);
@@ -236,6 +237,7 @@ function gridClick(ii){
                 if (i==ii){
                         gridItems[i].style.backgroundColor = "black";
                         gridItems[i].style.color = "white";
+                        textBox.setAttribute("value", String(i));
                 }else{
                         gridItems[i].style.backgroundColor = "rgb(200,200,200)";
                         gridItems[i].style.color = "black";
