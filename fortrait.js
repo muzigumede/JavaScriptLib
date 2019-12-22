@@ -177,9 +177,8 @@ function css() {
     }
 
 }
-selectGrid();
-function selectGrid(){
-        console.log("i was called");
+boxSelect();
+function boxSelect(){
         gridContainer = document.getElementById("selectGrid")
         
         //create list items
