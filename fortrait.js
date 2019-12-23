@@ -179,7 +179,7 @@ function css() {
 }
 boxSelect();
 function boxSelect(){
-        gridContainer = document.getElementById("selectGrid")
+        gridContainer = document.getElementById("selectGrid");
         
         //create list items
         gridList = document.createElement("ul");
@@ -231,6 +231,7 @@ function boxSelect(){
         
 }
 
+//function for handling a grid click event
 function gridClick(ii){
         for (i=0;i<gridItems.length;i++){
                 if (i==ii){
