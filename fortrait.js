@@ -1,6 +1,7 @@
 //Declare globals
 var pictures = document.getElementsByClassName("pictures");
 var picturesClones = []
+var allClear = true;
 
 
 
@@ -248,9 +249,13 @@ function gridClick(ii){
 function fadeOut(element) {
     var op = 1;  // initial opacity
     var timer = setInterval(function () {
+        allClear = false;
         if (op <= 0.1) {
             clearInterval(timer);
             element.style.display = 'none';
+            setTimeout(function(){
+                allClear = true;
+            },100);
         }
         element.style.opacity = op;
         element.style.filter = 'alpha(opacity=' + op * 100 + ")";
@@ -260,51 +265,61 @@ function fadeOut(element) {
 }
 
 function fadeIn(element) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 1) {
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-    }, 15);
+        var op = 0.1;
+        element.style.display = 'block';
+        var timer = setInterval(function () {
+                allClear = false;
+                if (op >= 1) {
+                        clearInterval(timer);
+                        setTimeout(function(){
+                                allClear = true;
+                        },100);
+                }
+                element.style.opacity = op;
+                element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+                op += op * 0.1;
+
+        }, 15);
 }
+
 
 item = 0
 function next() {
-    for (i = 0; i < pictures.length; i++) {
-        if (pictures[i].style.display != "none") {
-            if (i != pictures.length - 1) {
-                fadeOut(pictures[i])
-                fadeIn(pictures[i + 1])
-                thumbOpacity(i + 1)
-                break
-            } else {
-                fadeOut(pictures[i])
-                fadeIn(pictures[0])
-                thumbOpacity(0)
-                break
-            }
+        if (allClear == true){
+                for (i = 0; i < pictures.length; i++) {
+                        if (pictures[i].style.display != "none") {
+                                if (i != pictures.length - 1) {
+                                        fadeOut(pictures[i])
+                                        fadeIn(pictures[i + 1])
+                                        thumbOpacity(i + 1)
+                                        break
+                                } else {
+                                        fadeOut(pictures[i])
+                                        fadeIn(pictures[0])
+                                        thumbOpacity(0)
+                                        break
+                                }
+                        }
+                }
         }
-    }
 }
 
 function prev() {
-    for (i = 0; i < pictures.length; i++) {
-        if (pictures[i].style.display != "none") {
-            if (i != 0) {
-                fadeOut(pictures[i])
-                fadeIn(pictures[i - 1])
-                thumbOpacity(i - 1)
-                break
-            } else {
-                fadeOut(pictures[i])
-                fadeIn(pictures[pictures.length - 1])
-                thumbOpacity(pictures.length - 1)
-                break
-            }
+        if (allClear == true){
+                for (i = 0; i < pictures.length; i++) {
+                        if (pictures[i].style.display != "none") {
+                                if (i != 0) {
+                                        fadeOut(pictures[i])
+                                        fadeIn(pictures[i - 1])
+                                        thumbOpacity(i - 1)
+                                        break
+                                } else {
+                                        fadeOut(pictures[i])
+                                        fadeIn(pictures[pictures.length - 1])
+                                        thumbOpacity(pictures.length - 1)
+                                        break
+                                }
+                        }
+                }
         }
-    }
 }
