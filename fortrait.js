@@ -239,6 +239,8 @@ function gridClick(ii){
                         gridItems[i].style.backgroundColor = "black";
                         gridItems[i].style.color = "white";
                         textBox.setAttribute("value", String(i));
+                        gridItems[i].id = "iAm";
+                        resize("iAm", "50px");
                 }else{
                         gridItems[i].style.backgroundColor = "rgb(200,200,200)";
                         gridItems[i].style.color = "black";
@@ -322,4 +324,25 @@ function prev() {
                         }
                 }
         }
+}
+
+function resize(elementId, newWidth) {
+        var element = document.getElementById(elementId);
+
+        var currentWidth = parseInt(element.offsetWidth);
+        var currentHeight = parseInt(element.offsetHeight);
+        var newWidth = parseInt(newWidth);
+
+        var ratio = newWidth / currentWidth;
+
+        var newHeight = parseInt(currentHeight * ratio);
+
+        var widthDifference = newWidth - currentWidth;
+        var heightDifference = newHeight - currentHeight;
+        
+        element.style.position = "static";
+        element.style.left = String(-widthDifference / 2) + "px";
+        element.style.top = String(-heightDifference / 2) + "px";
+        element.style.width = String(newWidth) + "px";
+        element.style.height = String(currentHeight * ratio) + "px"; 
 }
