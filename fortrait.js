@@ -244,6 +244,8 @@ function gridClick(ii){
                 }else{
                         gridItems[i].style.backgroundColor = "rgb(200,200,200)";
                         gridItems[i].style.color = "black";
+                        gridItems[i].style.width = "24px";
+                        gridItems[i].style.height = "28px";
                 }
         }
 }
