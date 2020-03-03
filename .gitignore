@@ -1,3 +1,10 @@
 # macOS
 
 *.DS_Store
+
+# local
+
+fortrait.html
+fortrait.css
+AmaticSC-Bold.ttf
+AmaticSC-Regular.ttf
