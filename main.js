@@ -3,9 +3,11 @@ var pictures = document.getElementsByClassName("pictures");
 var picturesClones = []
 var allClear = true;
 
+//declare & invoke the entry point to the program
+(function() {
+        thumbs();
+})();
 
-
-thumbs();
 function thumbs() {
     for (i = 0; i < pictures.length; i++) {
         picturesClones.push(pictures.item(i).cloneNode(true))
