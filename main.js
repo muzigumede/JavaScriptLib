@@ -1,37 +1,40 @@
 //Declare globals
 var pictures = document.getElementsByClassName("pictures");
-var picturesClones = []
+var cloneObjArr = []
 var allClear = true;
 
-//declare & invoke the entry point to the program
+//Slide show main function
 (function() {
-        thumbs();
+        cloneAndAssign("pictures");
 })();
 
-function thumbs() {
-    for (i = 0; i < pictures.length; i++) {
-        picturesClones.push(pictures.item(i).cloneNode(true))
-        picturesClones[i].className = "picturesClones"
-        picturesClones[i].style.cssFloat = "left";
-        picturesClones[i].style.maxWidth = "200px";
-        picturesClones[i].style.minWidth = "50px";
-        picturesClones[i].style.width = "100%";
+function cloneAndAssign(className) {
 
-        thumbContainer = document.getElementById("thumbnails");
-        if (thumbContainer != null) {
-            thumbContainer.style.width = "100px";
-            thumbContainer.style.cssFloat = "left";
+        //let pictures    = document.getElementByClassName(className);
+        //let cloneObjArr = [];
+        
+        //SETPROPERTIES 
+        for (let i = 0; i < pictures.length; i++) {
+                cloneObjArr.push(pictures.item(i).cloneNode(true))
+                cloneObjArr[i].className = "cloneObjArr"
+                cloneObjArr[i].style.cssFloat = "left";
+                cloneObjArr[i].style.maxWidth = "200px";
+                cloneObjArr[i].style.minWidth = "50px";
+                cloneObjArr[i].style.width = "100%";
 
-            thumbContainer.appendChild(picturesClones[i])
+                thumbContainer = document.getElementById("thumbnails");
+                if (thumbContainer != null) {
+                        thumbContainer.style.width = "100px";
+                        thumbContainer.style.cssFloat = "left";
+
+                        thumbContainer.appendChild(cloneObjArr[i])
+                }
+        
+                //EVENTS
+                cloneObjArr[i].addEventListener("click", function() { randomClick(i); })
+                //return cloneObjArr;
+
         }
-
-        (function () {
-            var ii = i
-            setTimeout(function () {
-                picturesClones[ii].addEventListener("click", function () { randomClick(ii); })
-            }, 0);
-        })()
-    }
 }
 
 function randomClick(ii) {
@@ -50,11 +53,11 @@ function randomClick(ii) {
 //opacity for active and inactive thumbnails
 thumbOpacity(0)
 function thumbOpacity(objectIndex) {
-    for (i = 0; i < picturesClones.length; i++) {
+    for (let i = 0; i < cloneObjArr.length; i++) {
         if (i == objectIndex) {
-            picturesClones[objectIndex].style.opacity = "1";
+            cloneObjArr[objectIndex].style.opacity = "1";
         } else {
-            picturesClones[i].style.opacity = "0.5";
+            cloneObjArr[i].style.opacity = "0.5";
         }
     }
 }
@@ -63,7 +66,7 @@ css();
 function css() {
     //style the container
     container = document.getElementsByClassName("slideshow")
-    for (i = 0; i < container.length; i++) {
+    for (let i = 0; i < container.length; i++) {
         container[i].style.boxSizing = "border-box";
         container[i].style.position = "relative";
         container[i].style.display = "inlineBlock";
@@ -78,7 +81,7 @@ function css() {
 
     //style for the wrapper
     wrapper = document.getElementsByClassName("slideshow wrap");
-    for (i = 0; i < wrapper.length; i++) {
+    for (let i = 0; i < wrapper.length; i++) {
         wrapper[i].style.display = "inlineBlock";
         wrapper[i].style.position = "relative";
         wrapper[i].style.width = "100%";
@@ -103,7 +106,7 @@ function css() {
 
     //append controls to the main panel
     panel = document.getElementsByClassName("slideshow")
-    for (i = 0; i < panel.length; i++) {
+    for (let i = 0; i < panel.length; i++) {
         panel[i].append(controlDiv);
     }
 
@@ -151,7 +154,7 @@ function css() {
 
     //common styling for the two control elements
     controlsArr = document.getElementsByClassName("controls");
-    for (i = 0; i <= controlsArr.length - 1; i++) {
+    for (let i = 0; i <= controlsArr.length - 1; i++) {
         controlsArr[i].style.color = "black";
         controlsArr[i].style.width = "auto";
         controlsArr[i].style.height = "50px";
@@ -161,7 +164,7 @@ function css() {
     }
 
     pictures = document.getElementsByClassName("pictures");
-    for (i = 0; i < pictures.length; i++) {
+    for (let i = 0; i < pictures.length; i++) {
         pictures[i].style.position = "absolute";
         pictures[i].style.width = "100%";
         pictures[i].style.top = "0px";
@@ -169,7 +172,7 @@ function css() {
 
 
 
-    for (i = 0; i < pictures.length; i++) {
+    for (let i = 0; i < pictures.length; i++) {
         if (i == 0) {
             pictures[i].style.display = "block";
             pictures[i].style.opacity = "1.08347";
@@ -193,7 +196,7 @@ function boxSelect(){
 
         //create list items
         gridItems = [];
-        for (i=0;i<2;i++){
+        for (let i=0;i<2;i++){
                 element = document.createElement("li");
                 element.innerHTML = i;
                 element.style.backgroundColor = "rgb(200,200,200)";
@@ -217,7 +220,7 @@ function boxSelect(){
         selectObj = document.createElement("select");
 
         var selectOptions = [];
-        for (i=0;i<2;i++){
+        for (let i=0;i<2;i++){
                 option = document.createElement("option");
                 selectOptions.push(option);
                 selectOptions[i].innerHTML = i;
@@ -236,7 +239,7 @@ function boxSelect(){
 
 //function for handling a grid click event
 function gridClick(ii){
-        for (i=0;i<gridItems.length;i++){
+        for (let i=0;i<gridItems.length;i++){
                 if (i==ii){
                         gridItems[i].style.backgroundColor = "black";
                         gridItems[i].style.color = "white";
@@ -292,7 +295,7 @@ function fadeIn(element) {
 item = 0
 function next() {
         if (allClear == true){
-                for (i = 0; i < pictures.length; i++) {
+                for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
                                 if (i != pictures.length - 1) {
                                         fadeOut(pictures[i])
@@ -312,7 +315,7 @@ function next() {
 
 function prev() {
         if (allClear == true){
-                for (i = 0; i < pictures.length; i++) {
+                for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
                                 if (i != 0) {
                                         fadeOut(pictures[i])
