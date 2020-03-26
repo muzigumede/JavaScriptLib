@@ -3,7 +3,7 @@ var pictures = document.getElementsByClassName("pictures");
 var cloneObjArr = []
 var allClear = true;
 
-//Slide show main function
+//SLIDESHOW
 (function() {
         cloneAndAssign("pictures");
 })();
@@ -37,27 +37,27 @@ function cloneAndAssign(className) {
         }
 }
 
-function randomClick(ii) {
+function randomClick(i) {
     stack = document.getElementsByClassName("pictures")
-    if (stack[ii].style.display == "none") {
-        for (i = 0; i < stack.length; i++) {
+    if (stack[i].style.display == "none") {
+        for (let i = 0; i < stack.length; i++) {
             if (stack[i].style.display != "none") {
                 fadeOut(stack[i])
             }
         }
-        fadeIn(stack[ii])
+        fadeIn(stack[i])
     }
-    thumbOpacity(ii)
+    thumbOpacity(cloneObjArr, i)
 }
 
 //opacity for active and inactive thumbnails
-thumbOpacity(0)
-function thumbOpacity(objectIndex) {
-    for (let i = 0; i < cloneObjArr.length; i++) {
-        if (i == objectIndex) {
-            cloneObjArr[objectIndex].style.opacity = "1";
+thumbOpacity(cloneObjArr, 0)
+function thumbOpacity(elementsArr, index) {
+    for (let i = 0; i < elementsArr.length; i++) {
+        if (i == index) {
+            elementsArr[index].style.opacity = "1";
         } else {
-            cloneObjArr[i].style.opacity = "0.5";
+            elementsArr[i].style.opacity = "0.5";
         }
     }
 }
