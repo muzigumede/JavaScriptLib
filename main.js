@@ -183,6 +183,7 @@ function css() {
     }
 
 }
+
 boxSelect();
 function boxSelect(){
         gridContainer = document.getElementById("selectGrid");
@@ -208,12 +209,13 @@ function boxSelect(){
                 gridItems.push(element);
                 gridList.appendChild(gridItems[i]);
                 
-                (function(){
-                        var ii = i
-                        setTimeout(function(){
-                                gridItems[ii].addEventListener("click", function(){gridClick(ii)});
-                        },0);
-                })()
+                gridItems[i].addEventListener("click", function() {
+                        gridItems[i].style.backgroundColor = "black";
+                        gridItems[i].style.color = "white";
+                        textBox.setAttribute("value", String(i));
+                        gridItems[i].id = "iAm";
+                        resize("iAm", "50px");
+                });
         }
 
         //create the <select> and <option> tags for background functionality
@@ -237,23 +239,6 @@ function boxSelect(){
         
 }
 
-//function for handling a grid click event
-function gridClick(ii){
-        for (let i=0;i<gridItems.length;i++){
-                if (i==ii){
-                        gridItems[i].style.backgroundColor = "black";
-                        gridItems[i].style.color = "white";
-                        textBox.setAttribute("value", String(i));
-                        gridItems[i].id = "iAm";
-                        resize("iAm", "50px");
-                }else{
-                        gridItems[i].style.backgroundColor = "rgb(200,200,200)";
-                        gridItems[i].style.color = "black";
-                        gridItems[i].style.width = "24px";
-                        gridItems[i].style.height = "28px";
-                }
-        }
-}
 
 function fadeOut(element) {
     var op = 1;  // initial opacity
