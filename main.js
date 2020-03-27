@@ -1,6 +1,3 @@
-//Declare globals
-var pictures = document.getElementsByClassName("pictures");
-var cloneObjArr = []
 var allClear = true;
 
 //SLIDESHOW
@@ -10,8 +7,8 @@ var allClear = true;
 
 function cloneAndAssign(className) {
 
-        //let pictures    = document.getElementByClassName(className);
-        //let cloneObjArr = [];
+        let pictures    = document.getElementsByClassName(className);
+        let cloneObjArr = [];
         
         //SETPROPERTIES 
         for (let i = 0; i < pictures.length; i++) {
@@ -43,13 +40,15 @@ function cloneAndAssign(className) {
                         thumbOpacity(cloneObjArr, i);
 
                 })
+
                 //return cloneObjArr;
 
         }
+        thumbOpacity(cloneObjArr, 0);
+        css(pictures);
 }
 
 //opacity for active and inactive thumbnails
-thumbOpacity(cloneObjArr, 0)
 function thumbOpacity(elementsArr, index) {
     for (let i = 0; i < elementsArr.length; i++) {
         if (i == index) {
@@ -60,8 +59,7 @@ function thumbOpacity(elementsArr, index) {
     }
 }
 
-css();
-function css() {
+function css(pictures) {
     //style the container
     container = document.getElementsByClassName("slideshow")
     for (let i = 0; i < container.length; i++) {
@@ -118,7 +116,9 @@ function css() {
     prevBtn.className = "controls";
 
     //previous button event handlers
-    prevBtn.addEventListener("click", prev);
+    prevBtn.addEventListener("click", function(){
+        prev(pictures);
+    });
     prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
     prevBtn.addEventListener("mouseover", function () {
@@ -138,7 +138,9 @@ function css() {
     nextBtn.className = "controls";
 
     //next button event handlers
-    nextBtn.addEventListener("click", next);
+    nextBtn.addEventListener("click", function(){
+        next(pictures);
+    });
     nextBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(nextBtn);
 
@@ -282,7 +284,8 @@ function fadeIn(element) {
 
 
 item = 0
-function next() {
+function next(pictures) {
+        //let pictures = document.getElementByClassName("pictures");
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
@@ -302,7 +305,8 @@ function next() {
         }
 }
 
-function prev() {
+function prev(pictures) {
+        //let pictures = document.getElementByClassName("pictures");
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
