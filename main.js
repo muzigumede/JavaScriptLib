@@ -46,7 +46,7 @@ function cloneAndAssign(className) {
 
         }
         thumbOpacity(cloneObjArr, 0);
-        css(pictures);
+        css(pictures, cloneObjArr);
 }
 
 //opacity for active and inactive thumbnails
@@ -60,7 +60,7 @@ function thumbOpacity(elementsArr, index) {
     }
 }
 
-function css(pictures) {
+function css(pictures, cloneObjArr) {
     //style the container
     container = document.getElementsByClassName("slideshow")
     for (let i = 0; i < container.length; i++) {
@@ -118,7 +118,7 @@ function css(pictures) {
 
     //previous button event handlers
     prevBtn.addEventListener("click", function(){
-        prev(pictures);
+        prev(pictures, cloneObjArr);
     });
     prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
@@ -140,7 +140,7 @@ function css(pictures) {
 
     //next button event handlers
     nextBtn.addEventListener("click", function(){
-        next(pictures);
+        next(pictures, cloneObjArr);
     });
     nextBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(nextBtn);
@@ -285,19 +285,19 @@ function fadeIn(element) {
 
 
 item = 0
-function next(pictures) {
+function next(pictures, cloneObjArr) {
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
                                 if (i != pictures.length - 1) {
                                         fadeOut(pictures[i])
                                         fadeIn(pictures[i + 1])
-                                        thumbOpacity(i + 1)
+                                        thumbOpacity(cloneObjArr, i + 1)
                                         break
                                 } else {
                                         fadeOut(pictures[i])
                                         fadeIn(pictures[0])
-                                        thumbOpacity(0)
+                                        thumbOpacity(cloneObjArr, 0)
                                         break
                                 }
                         }
@@ -305,19 +305,19 @@ function next(pictures) {
         }
 }
 
-function prev(pictures) {
+function prev(pictures, cloneObjArr) {
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
                                 if (i != 0) {
                                         fadeOut(pictures[i])
                                         fadeIn(pictures[i - 1])
-                                        thumbOpacity(i - 1)
+                                        thumbOpacity(cloneObjArr, i - 1)
                                         break
                                 } else {
                                         fadeOut(pictures[i])
                                         fadeIn(pictures[pictures.length - 1])
-                                        thumbOpacity(pictures.length - 1)
+                                        thumbOpacity(cloneObjArr, pictures.length - 1)
                                         break
                                 }
                         }
