@@ -31,23 +31,21 @@ function cloneAndAssign(className) {
                 }
         
                 //EVENTS
-                cloneObjArr[i].addEventListener("click", function() { randomClick(i); })
+                cloneObjArr[i].addEventListener("click", function() {
+                        let current = pictures[i];
+                
+                        for(let i = 0; i < cloneObjArr.length; i++) {
+                                if(pictures[i].style.display != "none" && pictures[i] != current) {
+                                        fadeOut(pictures[i]);
+                                }
+                        }
+                        fadeIn(pictures[i]);
+                        thumbOpacity(cloneObjArr, i);
+
+                })
                 //return cloneObjArr;
 
         }
-}
-
-function randomClick(i) {
-    stack = document.getElementsByClassName("pictures")
-    if (stack[i].style.display == "none") {
-        for (let i = 0; i < stack.length; i++) {
-            if (stack[i].style.display != "none") {
-                fadeOut(stack[i])
-            }
-        }
-        fadeIn(stack[i])
-    }
-    thumbOpacity(cloneObjArr, i)
 }
 
 //opacity for active and inactive thumbnails
@@ -259,7 +257,13 @@ function fadeOut(element) {
 }
 
 function fadeIn(element) {
-        var op = 0.1;
+        console.log(element.style.opacity);
+        var op;
+        if(element.style.opacity < 0.1){
+                op = 0.1
+        }else{
+                op = element.style.opacity;
+        }
         element.style.display = 'block';
         var timer = setInterval(function () {
                 allClear = false;
