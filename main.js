@@ -10,8 +10,9 @@ function cloneAndAssign(className) {
         let pictures    = document.getElementsByClassName(className);
         let cloneObjArr = [];
         
-        //SETPROPERTIES 
         for (let i = 0; i < pictures.length; i++) {
+                
+                //SET PROPERTIES
                 cloneObjArr.push(pictures.item(i).cloneNode(true))
                 cloneObjArr[i].className = "cloneObjArr"
                 cloneObjArr[i].style.cssFloat = "left";
@@ -27,7 +28,7 @@ function cloneAndAssign(className) {
                         thumbContainer.appendChild(cloneObjArr[i])
                 }
         
-                //EVENTS
+                //SET EVENTS
                 cloneObjArr[i].addEventListener("click", function() {
                         let current = pictures[i];
                 
@@ -285,7 +286,6 @@ function fadeIn(element) {
 
 item = 0
 function next(pictures) {
-        //let pictures = document.getElementByClassName("pictures");
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
@@ -306,7 +306,6 @@ function next(pictures) {
 }
 
 function prev(pictures) {
-        //let pictures = document.getElementByClassName("pictures");
         if (allClear == true){
                 for (let i = 0; i < pictures.length; i++) {
                         if (pictures[i].style.display != "none") {
