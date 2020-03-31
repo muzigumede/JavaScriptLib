@@ -1,3 +1,3 @@
-timer = setInterval(function(){
-        console.log("muzi");
-},3000);
+function gradColor(element) {
+        
+}
