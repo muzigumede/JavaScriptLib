@@ -123,10 +123,12 @@ function css(pictures, cloneObjArr) {
     prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
     prevBtn.addEventListener("mouseover", function () {
-        prevBtn.style.color = "red";
+        //prevBtn.style.color = "red";
+        undoGradColor = gradColor(prevBtn);
     })
     prevBtn.addEventListener("mouseout", function () {
-        prevBtn.style.color = "black";
+        //prevBtn.style.color = "black";
+        undoGradColor();
     })
 
 
