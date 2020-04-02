@@ -123,12 +123,11 @@ function css(pictures, cloneObjArr) {
     prevBtn.addEventListener('mousedown', function (e) { e.preventDefault(); }, false);
     document.getElementById("controlDiv").appendChild(prevBtn);
     prevBtn.addEventListener("mouseover", function () {
-        //prevBtn.style.color = "red";
-        undoGradColor = gradColor(prevBtn);
+        gradColor(prevBtn, false);
     })
     prevBtn.addEventListener("mouseout", function () {
         //prevBtn.style.color = "black";
-        undoGradColor();
+        gradColor(prevBtn, true);
     })
 
 
@@ -262,7 +261,6 @@ function fadeOut(element) {
 }
 
 function fadeIn(element) {
-        console.log(element.style.opacity);
         var op;
         if(element.style.opacity < 0.1){
                 op = 0.1
